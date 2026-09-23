@@ -8,6 +8,17 @@
   var WHATSAPP_NUMBER = "5492615980528";
 
   var form = document.querySelector('form[name="consulta-antojo-mio"]');
+
+  // Menú móvil: al tocar un link se cierra el panel (el checkbox queda destildado)
+  var navToggle = document.querySelector("#nav-toggle");
+  if (navToggle) {
+    document.querySelectorAll(".main-nav a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navToggle.checked = false;
+      });
+    });
+  }
+
   if (!form) return;
 
   var status = form.querySelector(".form-status");

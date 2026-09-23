@@ -312,6 +312,122 @@ h2 + p {
   transform: scaleX(1);
 }
 
+/* ---------- 5b. Hamburguesa (solo móvil, CSS-only) ---------- */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.burger {
+  display: none;
+}
+
+/* ---------- 5c. Pulido móvil (escritorio intacto) ---------- */
+@media (max-width: 899px) {
+  html {
+    scroll-padding-top: 150px; /* header + panel desplegado */
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .burger {
+    display: inline-grid;
+    gap: 5px;
+    align-content: center;
+    justify-items: center;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    border: 1.5px solid rgba(62, 42, 32, 0.18);
+    border-radius: 12px;
+    background: var(--color-white);
+    padding: 10px;
+  }
+
+  .burger span {
+    display: block;
+    width: 22px;
+    height: 2.5px;
+    border-radius: 3px;
+    background: var(--color-cocoa-900);
+    transition: transform var(--transition), opacity var(--transition);
+  }
+
+  .nav-toggle:focus-visible + .burger {
+    outline: 3px solid var(--color-rose-500);
+    outline-offset: 3px;
+  }
+
+  /* checkbox tildado → cruz */
+  .nav-toggle:checked + .burger span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+
+  .nav-toggle:checked + .burger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle:checked + .burger span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+
+  /* panel vertical full-width, colapsado por defecto */
+  .main-nav {
+    display: none;
+    width: 100%;
+    padding-bottom: 8px;
+  }
+
+  .nav-toggle:checked ~ .main-nav {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    overflow: visible;
+  }
+
+  .main-nav a {
+    display: block;
+    padding: 13px 14px;
+    border-top: 1px solid rgba(62, 42, 32, 0.08);
+  }
+
+  .main-nav a::after {
+    display: none;
+  }
+
+  /* CTAs apilados a ancho completo */
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+  }
+
+  /* badge dentro del viewport (evita scroll horizontal) */
+  .hero-badge {
+    left: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wa-float {
+    width: 52px;
+    height: 52px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
 /* ---------- 6. Hero ---------- */
 .hero {
   position: relative;
